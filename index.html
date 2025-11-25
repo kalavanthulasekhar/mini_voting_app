@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Online Voting App</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+h1 {
+  background: #007bff;
+  color: white;
+  padding: 15px;
+}
+
+.container, .poll {
+  background: white;
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px gray;
+  border-radius: 8px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Mini Online Voting App</h1>
+
+  <div class="container">
+    <h2>Create a Poll</h2>
+    <input type="text" id="question" placeholder="Enter your question">
+    <input type="text" id="option1" placeholder="Option 1">
+    <input type="text" id="option2" placeholder="Option 2">
+    <button onclick="createPoll()">Create Poll</button>
+  </div>
+
+  <div class="poll" id="pollSection" style="display:none;">
+    <h2 id="pollQuestion"></h2>
+    <button onclick="vote(1)" id="btn1"></button>
+    <button onclick="vote(2)" id="btn2"></button>
+
+    <h3>Live Results</h3>
+    <p>Option 1 votes: <span id="vote1">0</span></p>
+    <p>Option 2 votes: <span id="vote2">0</span></p>
+  </div>
+
+  <script>
+    let votes1 = 0;
+let votes2 = 0;
+
+function createPoll() {
+  const q = document.getElementById("question").value;
+  const op1 = document.getElementById("option1").value;
+  const op2 = document.getElementById("option2").value;
+
+  if (!q || !op1 || !op2) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  document.getElementById("pollQuestion").textContent = q;
+  document.getElementById("btn1").textContent = op1;
+  document.getElementById("btn2").textContent = op2;
+
+  document.getElementById("pollSection").style.display = "block";
+}
+
+function vote(option) {
+  if (option === 1) votes1++;
+  else votes2++;
+
+  document.getElementById("vote1").textContent = votes1;
+  document.getElementById("vote2").textContent = votes2;
+}
+
+  </script>
+</body>
+</html>
